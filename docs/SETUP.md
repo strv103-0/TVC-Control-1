@@ -27,9 +27,13 @@ git config --global user.email "yijeong06@gmail.com"
 
 ```powershell
 gh auth login --web --git-protocol https
+gh auth setup-git
 ```
 
-브라우저가 열리고 일회용 코드를 입력하면 끝입니다. 이후 push/pull에서 비밀번호를 다시 묻지 않습니다.
+브라우저가 열리고 일회용 코드를 입력하면 끝입니다.
+
+두 번째 줄(`gh auth setup-git`)을 빠뜨리지 마세요. 이 명령이 git의 자격증명 헬퍼를 gh에 연결합니다.
+빠뜨리면 `gh` 명령은 잘 되는데 순수 `git push`만 `could not read Username for 'https://github.com'` 오류로 실패합니다.
 
 ## 4. 저장소 내려받기 (새 PC에서 1회)
 
