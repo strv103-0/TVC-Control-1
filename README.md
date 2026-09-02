@@ -19,7 +19,7 @@ TVC-Control-1/
 │  ├─ kicad/       PCB / 회로도
 │  ├─ cad/         동체 · 짐벌 기구 설계
 │  └─ datasheets/  부품 데이터시트
-├─ sim/          제어기 시뮬레이션 (Python)
+├─ sim/          제어기 시뮬레이션 (Simulink)
 ├─ analysis/     비행 · 벤치 로그 분석 스크립트
 ├─ logs/         실측 로그 (대용량 원본은 git 제외)
 ├─ docs/         설계 문서 · 실험 기록 · 의사결정 기록
@@ -48,6 +48,7 @@ TVC-Control-1/
 | 문서 | 내용 |
 |---|---|
 | [docs/SETUP.md](docs/SETUP.md) | 새 PC에서 개발 환경 준비하기 |
+| [docs/matlab-products.md](docs/matlab-products.md) | MATLAB 설치 시 선택할 제품 목록 |
 | [docs/requirements.md](docs/requirements.md) | 기체 요구사항 · 설계 목표 |
 | [docs/hardware-log.md](docs/hardware-log.md) | 부품 선정 · 배선 · 조립 기록 |
 | [docs/test-log.md](docs/test-log.md) | 벤치 테스트 · 비행 시험 기록 |

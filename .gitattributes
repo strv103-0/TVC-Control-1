@@ -19,6 +19,15 @@
 *.bat    text eol=crlf
 *.cmd    text eol=crlf
 
+# MATLAB / Simulink
+*.m      text eol=lf
+*.slx    binary
+*.mdl    binary
+*.mat    binary
+*.sldd   binary
+*.mlx    binary
+*.slxc   binary
+
 # KiCad / CAD / binaries: never touch line endings
 *.kicad_sch   text eol=lf
 *.kicad_pcb   text eol=lf

@@ -45,6 +45,20 @@ logs/**/*.txt
 !logs/**/README.md
 !logs/.gitkeep
 
+# ---- MATLAB / Simulink 산출물 ----
+slprj/
+sccprj/
+codegen/
+*.slxc
+*.asv
+*.autosave
+*.slx.r*
+*.mdl.r*
+*.mex*
+*_ert_rtw/
+*_grt_rtw/
+html/
+
 # ---- Secrets ----
 secrets.h
 *.env
