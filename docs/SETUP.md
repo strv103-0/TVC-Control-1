@@ -17,11 +17,30 @@ PlatformIO는 VS Code 확장 마켓에서 `PlatformIO IDE`를 설치하면 툴�
 ## 2. Git 신원 설정 (PC마다 1회)
 
 ```powershell
-git config --global user.name "본인이름"
+git config --global user.name "strv103-0"
 git config --global user.email "yijeong06@gmail.com"
 ```
 
-두 PC 모두 **같은 이름/이메일**을 쓰세요. 커밋 기록이 한 사람으로 깔끔하게 남습니다.
+**같은 GitHub 계정을 써도 PC마다 따로 해야 합니다.** `--global`은 "계정 전체"가 아니라
+"이 PC의 이 사용자 전체"라는 뜻이라, GitHub 계정을 따라 동기화되지 않습니다.
+빠뜨리면 첫 커밋에서 `Please tell me who you are.` 오류가 납니다.
+
+이 설정은 **인증과 무관**합니다. 로그인은 3번(`gh auth login`)이 담당하고,
+여기 값은 커밋에 새겨지는 작성자 표시일 뿐입니다. `user.name`은 검증되지 않으므로
+실명이 아니어도 되고, 두 PC에서 같은 값만 쓰면 됩니다.
+
+GitHub이 커밋을 계정에 연결하는 기준은 이름이 아니라 **이메일**입니다.
+이메일만 양쪽에서 일치하면 기여 그래프는 정상적으로 잡힙니다.
+
+> **저장소를 나중에 public으로 전환할 계획이라면**: 커밋에 새겨진 이메일은 영구히 남고 그대로 공개됩니다.
+> 실제 주소를 노출하고 싶지 않다면 GitHub이 제공하는 noreply 주소를 쓰세요.
+> (GitHub 설정에서 *Keep my email addresses private*를 켠 뒤)
+>
+> ```powershell
+> git config --global user.email "112059527+strv103-0@users.noreply.github.com"
+> ```
+>
+> 단, 바꾸기 전에 이미 만든 커밋의 이메일은 소급 변경되지 않습니다.
 
 ## 3. GitHub 로그인 (PC마다 1회)
 
