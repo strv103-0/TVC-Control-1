@@ -1,0 +1,51 @@
+# ---- Build outputs ----
+.pio/
+.pioenvs/
+.piolibdeps/
+build/
+*.elf
+*.bin
+*.hex
+*.map
+*.o
+*.d
+
+# ---- Editors / IDE ----
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.code-workspace
+
+# ---- OS ----
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# ---- Python (sim / analysis) ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# ---- KiCad autosave / backup (design files themselves ARE tracked) ----
+*-backups/
+*.kicad_prl
+*.kicad_pcb-bak
+*.sch-bak
+fp-info-cache
+\#auto_saved_files#
+
+# ---- Flight / bench logs: keep the folder, ignore bulky raw dumps ----
+logs/**/*.csv
+logs/**/*.bin
+logs/**/*.txt
+!logs/**/README.md
+!logs/.gitkeep
+
+# ---- Secrets ----
+secrets.h
+*.env
+.env
