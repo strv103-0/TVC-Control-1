@@ -4,13 +4,30 @@
 
 ## 1. 필수 프로그램
 
+### 필수 (두 PC 모두)
+
 ```powershell
 winget install --id Git.Git -e
 winget install --id GitHub.cli -e
 winget install --id Microsoft.VisualStudioCode -e
+winget install --id Python.Python.3.12 -e
 ```
 
-PlatformIO는 VS Code 확장 마켓에서 `PlatformIO IDE`를 설치하면 툴체인까지 자동으로 받아옵니다.
+VS Code를 연 뒤 확장 마켓에서 **PlatformIO IDE**를 설치하면 컴파일러 툴체인까지 자동으로 받아옵니다.
+
+### 설계 · 회로 (필요해질 때)
+
+```powershell
+winget install --id KiCad.KiCad -e          # 회로도 / PCB
+winget install --id Autodesk.Fusion -e      # 동체 · 짐벌 기구 설계 (교육용 라이선스 인증 필요)
+winget install --id Sigrok.PulseView -e     # 로직 애널라이저 뷰어 (서보 PWM · I2C 확인)
+winget install --id AnalogDevices.LTspice -e # 전원부 회로 시뮬 (커스텀 PCB 단계)
+```
+
+PlotJuggler(실시간 텔레메트리 플로팅)는 winget에 없어
+[GitHub 릴리스](https://github.com/facontidavide/PlotJuggler/releases)에서 내려받습니다.
+
+도구 선정 이유는 [decisions/0001-toolchain.md](decisions/0001-toolchain.md)를 참고하세요.
 
 > 설치 후 **PowerShell을 새로 열어야** `git`, `gh` 명령이 인식됩니다.
 
