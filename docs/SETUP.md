@@ -74,3 +74,14 @@ git rebase --continue
 **"큰 파일(CAD, 로그)을 올렸더니 느려요"**
 100MB 넘는 파일은 GitHub가 거부합니다. 원본 비행 로그는 `logs/`에 두면 자동으로 git에서 제외되고,
 정리된 요약본만 `analysis/`에 올리는 것을 권장합니다.
+
+## 참고: PowerShell 스크립트 인코딩
+
+Windows PowerShell 5.1은 BOM 없는 UTF-8 `.ps1` 파일을 cp949로 잘못 읽어 한글 주석·문자열이 깨집니다.
+이 저장소에 한글이 들어간 `.ps1`을 추가할 때는 **UTF-8 with BOM**으로 저장하세요.
+
+```powershell
+$p = "tools\새스크립트.ps1"
+$c = Get-Content -Raw -Encoding UTF8 $p
+[IO.File]::WriteAllText($p, $c, (New-Object System.Text.UTF8Encoding $true))
+```
