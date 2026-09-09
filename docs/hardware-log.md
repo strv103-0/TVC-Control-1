@@ -25,3 +25,5 @@
 
 ### 2026-09-02
 - 프로젝트 저장소 및 폴더 구조 생성.
+- 개발 도구 확정 (ADR 0001): 기구설계 Fusion · 회로 KiCad · 펌웨어 PlatformIO ·
+  제어 시뮬레이션 MATLAB/Simulink · 로그분석 Python.

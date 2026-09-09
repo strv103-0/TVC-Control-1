@@ -1,10 +1,10 @@
 # 새 PC 개발 환경 세팅
 
-데스크톱과 노트북 양쪽에서 동일하게 진행합니다. (한쪽은 이미 완료된 상태)
+작업할 PC마다 한 번씩 진행합니다. 데스크톱은 완료된 상태이므로, 노트북 등 새 PC에서 이 문서를 따라가면 됩니다.
 
 ## 1. 필수 프로그램
 
-### 필수 (두 PC 모두)
+### 필수 (모든 작업 PC)
 
 ```powershell
 winget install --id Git.Git -e
@@ -44,10 +44,10 @@ git config --global user.email "yijeong06@gmail.com"
 
 이 설정은 **인증과 무관**합니다. 로그인은 3번(`gh auth login`)이 담당하고,
 여기 값은 커밋에 새겨지는 작성자 표시일 뿐입니다. `user.name`은 검증되지 않으므로
-실명이 아니어도 되고, 두 PC에서 같은 값만 쓰면 됩니다.
+실명이 아니어도 되고, 모든 PC에서 같은 값만 쓰면 됩니다.
 
 GitHub이 커밋을 계정에 연결하는 기준은 이름이 아니라 **이메일**입니다.
-이메일만 양쪽에서 일치하면 기여 그래프는 정상적으로 잡힙니다.
+이메일만 모든 PC에서 일치하면 기여 그래프는 정상적으로 잡힙니다.
 
 > **저장소를 나중에 public으로 전환할 계획이라면**: 커밋에 새겨진 이메일은 영구히 남고 그대로 공개됩니다.
 > 실제 주소를 노출하고 싶지 않다면 GitHub이 제공하는 noreply 주소를 쓰세요.
@@ -76,12 +76,31 @@ gh auth setup-git
 ```powershell
 mkdir D:\My_Project_Workspace
 cd D:\My_Project_Workspace
-gh repo clone <계정명>/TVC-Control-1
+gh repo clone strv103-0/TVC-Control-1
 ```
 
-두 PC 모두 `D:\My_Project_Workspace\TVC-Control-1` 경로를 쓰면 스크립트·설정 경로가 어긋나지 않습니다.
+모든 PC에서 `D:\My_Project_Workspace\TVC-Control-1` 경로를 쓰면 스크립트·설정 경로가 어긋나지 않습니다.
+(D 드라이브가 없는 PC라면 `C:\My_Project_Workspace`도 무방합니다. 경로만 본인이 기억하면 됩니다.)
 
-## 5. 일상 작업 흐름
+## 5. MATLAB / Simulink 설치 (제어 시뮬레이션을 할 PC만)
+
+1. 학교 계정으로 [MathWorks](https://www.mathworks.com/login)에 로그인해 라이선스를 연결합니다.
+2. 설치 관리자를 받아 실행하고, **설치할 제품을 선택**합니다.
+3. 설치 위치는 용량이 크므로 여유 있는 드라이브를 고릅니다 (예: `D:\Program Files\MATLAB`).
+
+전체 설치는 매우 크므로 필요한 제품만 고릅니다.
+**어떤 제품을 선택할지는 [matlab-products.md](matlab-products.md)에 단계별로 정리돼 있습니다.**
+
+> 여러 PC에서 모델을 열려면 **같은 제품 목록으로 설치**해야 합니다.
+> 한쪽에만 있는 툴박스의 블록을 쓰면 다른 PC에서 모델이 열리지 않습니다.
+
+STM32에 코드 생성을 할 계획이면, MATLAB 실행 후 **Add-On Explorer**에서 아래를 추가 설치합니다 (무료).
+
+```
+Embedded Coder Support Package for STMicroelectronics STM32 Processors
+```
+
+## 6. 일상 작업 흐름
 
 | 시점 | 명령 | 이유 |
 |---|---|---|
@@ -90,6 +109,19 @@ gh repo clone <계정명>/TVC-Control-1
 | 작업 **끝날 때** | `git push` | 다른 PC가 이어받을 수 있게 올립니다 |
 
 `tools\sync.ps1`이 이 과정을 감싸줍니다.
+
+## Simulink 모델(`.slx`) 편집 규칙
+
+`.slx`는 바이너리 파일이라 **git이 내용을 병합하지 못합니다.**
+텍스트 파일처럼 다루면 반드시 사고가 납니다.
+
+1. 모델을 열기 전에 **반드시** `.	ools\sync.ps1 start`
+2. 작업을 마치면 **반드시** `.	ools\sync.ps1 end "..."` — 다른 PC로 옮기기 전에 push
+3. 한 번에 **한 PC에서만** 편집합니다
+4. 큰 구조 변경 전에는 커밋을 먼저 만들어 되돌아갈 지점을 확보합니다
+
+파라미터(질량·관성·게인)는 모델 블록 안에 직접 적지 말고 `sim/matlab/params.m`에 변수로 둡니다.
+`.m`은 텍스트라 변경 이력이 git에 남습니다.
 
 ## 자주 겪는 상황
 
@@ -110,6 +142,18 @@ git rebase --continue
 ```
 
 **예방책**: PC를 옮기기 전에 반드시 push, 작업을 시작할 때 반드시 pull. 이것만 지키면 충돌은 거의 나지 않습니다.
+
+**"`.slx` 파일이 충돌났어요"**
+Simulink 모델은 병합이 불가능하므로 **어느 한쪽을 통째로 고르는 것**이 유일한 해결책입니다.
+내 PC의 버전을 살리려면 `--ours`, 원격 버전을 살리려면 `--theirs`를 씁니다.
+
+```powershell
+git checkout --ours sim/simulink/모델명.slx
+git add sim/simulink/모델명.slx
+git rebase --continue
+```
+
+버린 쪽의 작업은 되살릴 수 없습니다. 애초에 한 PC에서만 편집하는 것이 유일한 예방책입니다.
 
 **"큰 파일(CAD, 로그)을 올렸더니 느려요"**
 100MB 넘는 파일은 GitHub가 거부합니다. 원본 비행 로그는 `logs/`에 두면 자동으로 git에서 제외되고,
