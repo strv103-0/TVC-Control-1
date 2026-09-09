@@ -5,8 +5,23 @@
 ```
 sim/
 ├─ simulink/   Simulink 모델 (.slx) — 기체 동역학, 제어기
-└─ matlab/     파라미터 스크립트 (.m) — 질량, 관성, 게인, 서보 사양
+└─ matlab/
+   └─ params.m   모든 시뮬레이션 파라미터 (질량 · 관성 · 게인 · 서보 사양)
 ```
+
+## 사용법
+
+Simulink 모델을 열기 **전에** 파라미터를 먼저 워크스페이스에 올린다.
+
+```matlab
+cd sim/matlab
+params
+```
+
+검산 결과와 경고가 출력된다. 목표 대역폭이 서보 한계를 넘으면 경고가 뜨므로,
+값을 바꿀 때마다 이 출력을 확인한다.
+
+값의 근거와 갱신 절차는 [../docs/requirements.md](../docs/requirements.md) 참고.
 
 필요한 MATLAB 제품은 [../docs/matlab-products.md](../docs/matlab-products.md) 참고.
 
