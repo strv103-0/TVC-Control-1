@@ -70,7 +70,8 @@ TVC-Control-1/
 |---|---|
 | [docs/SETUP.md](docs/SETUP.md) | 새 PC에서 개발 환경 준비하기 |
 | [docs/matlab-products.md](docs/matlab-products.md) | MATLAB 설치 시 선택할 제품 목록 |
-| [docs/requirements.md](docs/requirements.md) | 기체 요구사항 · 설계 목표 |
+| [docs/requirements.md](docs/requirements.md) | 기체 요구사항 · 설계 목표 · 시뮬레이션 파라미터 |
+| [docs/dynamics-and-control.md](docs/dynamics-and-control.md) | 동역학 유도와 제어 구조 설계 이론 |
 | [docs/hardware-log.md](docs/hardware-log.md) | 부품 선정 · 배선 · 조립 기록 |
 | [docs/test-log.md](docs/test-log.md) | 벤치 테스트 · 비행 시험 기록 |
 | [docs/decisions/0001-toolchain.md](docs/decisions/0001-toolchain.md) | 개발 도구 선정 근거 (ADR) |
